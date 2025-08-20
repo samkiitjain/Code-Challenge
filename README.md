@@ -39,5 +39,15 @@ Description:
 
 ## How to build/run App
 
+1. Clone repo in local folder:
+   https://github.com/samkiitjain/Code-Challenge
+
+2. Open cmd/bash
+3. Change directory to go in the root directory of project. Tip: you should see pom.xml file.
+4. Build command :
+	mvn clean package
+5. run command:
+   mvn spring-boot:run
+
 
 
