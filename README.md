@@ -45,9 +45,22 @@ Description:
 2. Open cmd/bash
 3. Change directory to go in the root directory of project. Tip: you should see pom.xml file.
 4. Build command :
-	mvn clean package
+	CMD
+   mvn clean package
+
+   Bash terminal
+   ./mvnw clean package
+
 5. run command:
+   CMD
    mvn spring-boot:run
+
+   Bash terminal
+   ./mvnw spring-boot:run
+
+6. Swagger-UI will be available at
+http://localhost:8080/swagger-ui/index.html 
+
 
 
 
