@@ -13,7 +13,7 @@ public class EventRegisterModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "EVENT_ID", nullable = false)
-    private int eventID;
+    private Long eventID;
 
     @Column(name = "EVENT_KEY", nullable = false)
     private int eventKey;

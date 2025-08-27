@@ -2,13 +2,15 @@ package dk.tryg.code.service;
 
 import dk.tryg.code.model.EventRegisterModel;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
 
 
 public interface EventRepo extends JpaRepository<EventRegisterModel, Integer> {
 
-    @Query("SELECT e FROM EventRegisterModel e WHERE e.eventKey = :eventKey AND (e.eventTime < :timestamp OR e.eventTime = :timestamp) ORDER BY e.eventTime DESC")
-    List<EventRegisterModel> findEvents(int eventKey, Long timestamp);
+    /*SELECT TOP 1 events FROM EventRegisterModel
+    events WHERE events.eventKey = :eventKey AND
+    (events.eventTime < :timestamp OR events.eventTime = :timestamp)
+    ORDER BY events.eventTime DESC")*/
+
+    EventRegisterModel findFirstByEventKeyAndEventTimeLessThanEqualOrderByEventTimeDesc(int eventKey, Long timestamp);
 }

@@ -1,7 +1,7 @@
 package dk.tryg.code.service;
 
 import dk.tryg.code.model.EventRegisterModel;
-import dk.tryg.code.model.request.EventDataRequest;
+import dk.tryg.code.model.EventData;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,9 +21,9 @@ public class EventRegisterService implements EventRegisterImpl{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<EventRegisterModel> fetchEventsForTimeStamp(int event, Long eventTime) {
-       List<EventRegisterModel> events = repository.findEvents(event, eventTime);
-       return events;
+    public EventRegisterModel fetchEventsForTimeStamp(int event, Long eventTime) {
+       EventRegisterModel eventData = repository.findFirstByEventKeyAndEventTimeLessThanEqualOrderByEventTimeDesc(event, eventTime);
+       return eventData;
     }
 
     /**
@@ -32,7 +32,7 @@ public class EventRegisterService implements EventRegisterImpl{
      */
     @Override
     @Transactional
-    public EventRegisterModel saveEvent(EventDataRequest request) {
+    public EventRegisterModel saveEvent(EventData request) {
         EventRegisterModel model = new EventRegisterModel();
         model.setEventKey(request.getEventKey());
         model.setEvent(request.getEventName());
